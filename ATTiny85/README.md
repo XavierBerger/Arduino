@@ -19,7 +19,7 @@ This module entend to work on battery, it is then important to have a feedback o
 
 The battery level is then measured by the ADC of ATTiny85. This embedded ADC will compare the voltage set in port 4 an internal reference of 2.56V and return a digital value between 0 and 1024. 
 
-The battery probe is designed to replicate level of the battery (starting for 9v and decreasing) in a level compatible with the ADC ( < VCC).
+The battery probe is designed to replicate level of the battery (starting for 4.8v and decreasing) in a level compatible with the ADC ( < VCC).
 
 The schema bellow represent the probe:
 
@@ -44,4 +44,4 @@ Vref is the internal reference and is equal to 2.56V.
 
 So, when the 4 x AA rechargeable battery (1.2V each) are fully charged (4.8V): ADC = (1.6*1024)/2.56 = 640. Each step of ADC representing 7.5mV.
 
-The value read in the ADC will be stored inside the ATTiny and send unchanged. The Raspberry Pi and **RPi-Monitor** willread this value and convert it to real voltage. Leting the Raspberry Pi doing th job will easily allow the calibration and the conversion from an Interger to Volts.
+The value read in the ADC will be stored inside the ATTiny and send unchanged. The Raspberry Pi and **RPi-Monitor** will read this value and convert it to real voltage. Leting the Raspberry Pi doing th job will easily allow the calibration and the conversion from an Interger to Volts.
