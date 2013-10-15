@@ -1,6 +1,8 @@
 #ATTiny85 module
 
 ## Overview
+**This assembly is still in development and not ready for production yet but, in association with [RPi-Monitor-LCD](https://github.com/XavierBerger/RPi-Monitor-LCD) and [RPi-Monitor](https://github.com/XavierBerger/RPi-Monitor), it could be a good start for future home automation project.**
+
 This module is designed to get data from Onewire bus or 2 other inpout (port 2 and 3) plus the level of the battery and send it wirelessly through A 433MHz module.
 
 ![schema](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/attiny85_schem_small.png)
