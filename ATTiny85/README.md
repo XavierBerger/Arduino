@@ -5,7 +5,7 @@
 
 This module is designed to get data from Onewire bus or 2 other inpout (port 2 and 3) plus the level of the battery and send it wirelessly through A 433MHz module.
 
-![schema](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/attiny85_schem_small.png)
+![schema](attiny85_schem_small.png)
 
 The bus **probe** is dedicate to measure the battery level as described into the next chapter.
 
@@ -23,21 +23,21 @@ The battery probe is designed to replicate level of the battery (starting for 4.
 
 The schema bellow represent the probe:
 
-![probe](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/VBatProbe.png)
+![probe](VBatProbe.png)
 
 The battery is simulated by the sinusoidale input V1. The probe will read the voltage between the two transistors.
 
 The following result of simulation is showing that the battery level is reproduced from 1.6V to 0V.
 
-![probeGraph](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/VBatProbeGraph.png)
+![probeGraph](VBatProbeGraph.png)
 
-The current available for the ATTiny ADC is very small, few µA. This has the advantage to not empty the battery to measure its level. In counter part, the ADC will react very slowly. This is not a issue since the battery level is also changing very slowly. The schema bellow is representing the ADC equivalent schema as described into [this document](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Docs/ADC_of_TinyAVR.pdf) (V1=VCC=4.8V, R=100k, C=14pF, V2=VCC/2=2.4V).
+The current available for the ATTiny ADC is very small, few µA. This has the advantage to not empty the battery to measure its level. In counter part, the ADC will react very slowly. This is not a issue since the battery level is also changing very slowly. The schema bellow is representing the ADC equivalent schema as described into [this document](ADC_of_TinyAVR.pdf) (V1=VCC=4.8V, R=100k, C=14pF, V2=VCC/2=2.4V).
 
-![ADC](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/VBatProbeStart.png)
+![ADC](VBatProbeStart.png)
 
 The simulation is showing that the ADC will be able to measure the battery level at least 12 seconds after start. This duration is required for the internal capacitor to be fully charged.
 
-![ADCGraph](https://bitbucket.org/xberger/arduino-rfs/raw/master/Arduino/ATTiny85/Board/VBatProbeStartGraph.png)
+![ADCGraph](VBatProbeStartGraph.png)
 
 When the ADC will be stabilized, it will return the level of the battery following the formula `ADC=(Vin * 1024) / Vref`.
 Vref is the internal reference and is equal to 2.56V.
@@ -45,3 +45,8 @@ Vref is the internal reference and is equal to 2.56V.
 So, when the 4 x AA rechargeable battery (1.2V each) are fully charged (4.8V): ADC = (1.6*1024)/2.56 = 640. Each step of ADC representing 7.5mV.
 
 The value read in the ADC will be stored inside the ATTiny and send unchanged. The Raspberry Pi and **RPi-Monitor** will read this value and convert it to real voltage. Leting the Raspberry Pi doing th job will easily allow the calibration and the conversion from an Interger to Volts.
+
+# PCB
+
+![ADCGraph](attiny85_pcb.png)
+
