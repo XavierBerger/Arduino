@@ -10,6 +10,8 @@ This module is designed to get data from Onewire bus or 2 other inpout (port 2 a
 The bus **probe** is dedicate to measure the battery level as described into the next chapter.
 
 ## Algorithm for CNY70
+CNY70 is a reflective opto-transistor. its datasheet is available [here](https://github.com/XavierBerger/Arduino/raw/master/docs/cny70.pdf). It can be used to measure water consumption when the water counter is equiped with a reflector sticked into the liter's dial.
+
 The port connected to CNY70 is configured in RAISE interuption mode. This interuption will trigger a callback which will read the previous value of the counter stored into the EEPROM, increment it and store the result is the same memory area.
 The main loop awakes every minute and read CNY70 value from the memory and compare it from the last sent value. If a change occurs, it read the ADC to get the battery, read the Onewire temperatur probe and send the three values through 433MHz link then stored the last sent value from CNY70 into the EEPROM. 
 
@@ -31,7 +33,7 @@ The following result of simulation is showing that the battery level is reproduc
 
 ![probeGraph](VBatProbeGraph.png)
 
-The current available for the ATTiny ADC is very small, few µA. This has the advantage to not empty the battery to measure its level. In counter part, the ADC will react very slowly. This is not a issue since the battery level is also changing very slowly. The schema bellow is representing the ADC equivalent schema as described into [this document](ADC_of_TinyAVR.pdf) (V1=VCC=4.8V, R=100k, C=14pF, V2=VCC/2=2.4V).
+The current available for the ATTiny ADC is very small, few µA. This has the advantage to not empty the battery to measure its level. In counter part, the ADC will react very slowly. This is not a issue since the battery level is also changing very slowly. The schema bellow is representing the ADC equivalent schema as described into [this document](https://github.com/XavierBerger/Arduino/raw/master/docs/ADC_of_TinyAVR.pdf) (V1=VCC=4.8V, R=100k, C=14pF, V2=VCC/2=2.4V).
 
 ![ADC](VBatProbeStart.png)
 
